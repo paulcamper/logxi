@@ -184,7 +184,9 @@ func parseDebugStack(stack string, skip int, ignoreRuntime bool) []*frameInfo {
 		}
 		space := strings.Index(sourceLine, " ")
 		ci.filename = sourceLine[0:colon]
-
+		if isLogxiCode(ci.filename) {
+			continue
+		}
 		// BUG with callstack where the error message has embedded newlines
 		// if colon > space {
 		// 	fmt.Println("lines", lines)
